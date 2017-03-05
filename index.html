@@ -1,0 +1,138 @@
+<!doctype html>
+<html ng-app="todoApp">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">{{title}}</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container margin-top-small">
+        <div ng-controller="ProductController">
+            <div class="row">
+                <div class="col-sm-4">
+                    <!-- add product section-->
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{add_product_title}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form ng-submit="addProduct()">
+                                <!-- name field section-->
+                                <div class="form-group">
+                                    <label for="name" class="control-label">Product Name: </label>
+                                    <input class="form-control" type="text" ng-model="productName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="feature_list" class="control-label">Features List: </label>
+                                    <select class="form-control" name="feature_list" ng-options="feature.text for feature in features" ng-model="selectedFeature">
+                                        <option value="">--Select User--</option>
+                                    </select>
+                                </div>
+                                <!-- button section -->
+                                <div class="form-group">
+                                    <input class="btn btn-success" type="submit" ng-disabled="!productName.length" value="Save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- add features section-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{add_feature_title}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form ng-submit="addFeature()">
+                                <!-- name field section-->
+                                <div class="form-group">
+                                    <label for="name" class="control-label">Feature Name: </label>
+                                    <input class="form-control" type="text" ng-model="featureName">
+                                </div>
+                                <!-- button section -->
+                                <div class="form-group">
+                                    <input class="btn btn-primary" type="submit" ng-disabled="!featureName.length" value="Save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- right side list -->
+                <div class="col-sm-8">
+                    <button class="btn btn-primary" ng-click="clearProduct()" ng-disabled="!products.length">Remove Selected Products</button>
+                    <ul class="unstyled">
+                        <li ng-repeat="product in products">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-sm-8">
+                                        <label class="checkbox">
+                                        <input type="checkbox" ng-model="product.done">
+                                        <span class="done-{{product.done}}">{{product.text}}</span>
+                                    </label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="deleteProduct($index)">Feature Details</button>
+                                        <button class="btn btn-danger btn-xs btn-align-middle pull-right" ng-click="deleteProduct($index)">Delete</button>
+                                        <button class="btn btn-default btn-xs btn-align-middle pull-right" ng-click="editProduct($index)">Edit</button>
+                                    </div>
+
+                                    <ul>
+                                        <li ng-repeat="productFeature in product.features" ng-if="features.length">
+                                            <span>{{productFeature.text}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <hr>
+                    <button class="btn btn-primary" ng-click="clearFeature()" ng-disabled="!features.length">Remove Selected Features</button>
+                    <ul class="unstyled">
+                        <li ng-repeat="feature in features">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-sm-9">
+                                        <label class="checkbox">
+                                            <input type="checkbox" ng-model="feature.done">
+                                            <span class="done-{{feature.done}}">{{feature.text}}</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button class="btn btn-danger btn-xs btn-align-middle pull-right" ng-click="deleteFeature($index)">Delete</button>
+                                        <button class="btn btn-default btn-xs btn-align-middle pull-right" ng-click="editFeature($index)">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div ng-controller="TodoListController as todoList">
+        <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span> [ <a href="" ng-click="todoList.archive()">archive</a> ]
+        <ul class="unstyled">
+            <li ng-repeat="todo in todoList.todos">
+                <label class="checkbox">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+          </label>
+            </li>
+        </ul>
+        <form ng-submit="todoList.addTodo()">
+            <input type="text" ng-model="todoList.todoText" size="30" placeholder="add new todo here">
+            <input class="btn-primary" type="submit" value="add">
+        </form>
+    </div>-->
+</body>
+
+</html>

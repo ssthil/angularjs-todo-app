@@ -1,0 +1,39 @@
+.done-true {
+    text-decoration: line-through;
+    color: grey;
+}
+
+ul.unstyled {
+    margin: 5px 0;
+    padding: 0;
+}
+
+.unstyled li {
+    list-style: none;
+}
+
+.unstyled li .checkbox {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.margin-top-small {
+    margin-top: 80px;
+}
+
+.panel-custom {
+    border-color: #707782;
+}
+
+.panel-custom>.panel-heading {
+    color: #ffffff;
+    background-color: #707782;
+    border-color: #707782;
+}
+
+.btn-align-middle {
+    margin-top: 8px;
+    margin-left: 5px;
+}
