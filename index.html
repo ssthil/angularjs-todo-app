@@ -2,63 +2,71 @@
 <html ng-app="todoApp">
 
 <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
     <script src="app.js"></script>
-    <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">{{title}}</a>
             </div>
         </div>
     </nav>
-    <div class="container margin-top-small">
+    <div class="container-fluid margin-top-small">
         <div ng-controller="ProductController">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <!-- add product section-->
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{add_product_title}}</h3>
+                            <h3 class="panel-title">{{label.add_product_title}}</h3>
                         </div>
                         <div class="panel-body">
-                            <form ng-submit="addProduct()">
+                            <form name="productForm" ng-submit="addProduct()">
                                 <!-- name field section-->
                                 <div class="form-group">
-                                    <label for="name" class="control-label">Product Name: </label>
-                                    <input class="form-control" type="text" ng-model="productName">
+                                    <label for="name" class="control-label">{{label.product_name_lbl}}: </label>
+                                    <input class="form-control" type="text" id="product_name" name="product_name" ng-model="productName" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="feature_list" class="control-label">Features List: </label>
-                                    <select class="form-control" name="feature_list" ng-options="feature.text for feature in features" ng-model="selectedFeature">
-                                        <option value="">--Select User--</option>
+                                    <label for="feature_list" class="control-label">{{label.feature_list_lbl}}:: </label>
+                                    <select class="form-control" name="feature_list" ng-options="feature.text for feature in features" ng-model="selectedFeature" required>
+                                        <option value="">--Empty Feature List--</option>
                                     </select>
                                 </div>
                                 <!-- button section -->
-                                <div class="form-group">
+                                <div class="form-group margin-bottom-none">
+                                    <!--<button class="btn btn-success" ng-click="addProduct()">Save</button>-->
                                     <input class="btn btn-success" type="submit" ng-disabled="!productName.length" value="Save">
+                                    <button type="button" class="btn btn-primary add-feature" ng-click="addFeatureWindow()" ng-disabled="features.length">Add Feature</button>
                                 </div>
+                                <!--<div ng-messages="productForm.product_name.$error" style="color:maroon" role="alert">
+                                    <div ng-message="required">You did not enter a field</div>
+                                </div>-->
+                                <p style="color:#e45" ng-show="submitted && productForm.product_name.$error.required">Product name is required.</p>
+                                <p style="color:#e45" ng-show="submitted && productForm.feature_list.$error.required">Feature name is required.</p>
                             </form>
                         </div>
                     </div>
                     <!-- add features section-->
-                    <div class="panel panel-info">
+                    <div class="panel panel-info" id="addFeatureWindow">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{add_feature_title}}</h3>
+                            <h3 class="panel-title">{{label.add_feature_title}}</h3>
                         </div>
                         <div class="panel-body">
                             <form ng-submit="addFeature()">
                                 <!-- name field section-->
                                 <div class="form-group">
-                                    <label for="name" class="control-label">Feature Name: </label>
+                                    <label for="name" class="control-label">{{label.feature_name_lbl}}: </label>
                                     <input class="form-control" type="text" ng-model="featureName">
                                 </div>
                                 <!-- button section -->
-                                <div class="form-group">
+                                <div class="form-group margin-bottom-none">
                                     <input class="btn btn-primary" type="submit" ng-disabled="!featureName.length" value="Save">
                                 </div>
                             </form>
@@ -66,26 +74,39 @@
                     </div>
                 </div>
                 <!-- right side list -->
-                <div class="col-sm-8">
-                    <button class="btn btn-primary" ng-click="clearProduct()" ng-disabled="!products.length">Remove Selected Products</button>
-                    <ul class="unstyled">
+                <div class="col-sm-5">
+                    <div class="product-heading-section">
+                        <h4>{{label.product_info_title}}</h4>
+                        <button class="btn btn-danger btn-xs pull-right" ng-click="clearProduct()" ng-disabled="totalProductCount() === products.length ?  true : false" ng-show="products.length">{{label.remove_btn_product}}</button>
+                    </div>
+                    <div ng-show="!products.length">No Product Found</div>
+                    <ul class="unstyled product-list">
                         <li ng-repeat="product in products">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-7">
                                         <label class="checkbox">
                                         <input type="checkbox" ng-model="product.done">
                                         <span class="done-{{product.done}}">{{product.text}}</span>
                                     </label>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="deleteProduct($index)">Feature Details</button>
+                                    <!--<div class="col-sm-4">
+                                        <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="showDetails = !showDetails">Feature Details</button>
                                         <button class="btn btn-danger btn-xs btn-align-middle pull-right" ng-click="deleteProduct($index)">Delete</button>
                                         <button class="btn btn-default btn-xs btn-align-middle pull-right" ng-click="editProduct($index)">Edit</button>
+
+
+                                    </div>-->
+                                    <div class="pull-right action-buttons margin-right-sm">
+                                        <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="showDetails = !showDetails">Feature Details</button>
+                                        <a href="#" class="trash pull-right" ng-click="deleteProduct($index)"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a href="#" class="pull-right" ng-click="editProduct($index)"><span class="glyphicon glyphicon-pencil"></span></a>
                                     </div>
 
+                                </div>
+                                <div class="panel-footer">
                                     <ul>
-                                        <li ng-repeat="productFeature in product.features" ng-if="features.length">
+                                        <li ng-repeat="productFeature in product.features" ng-if="features.length" ng-show="showDetails">
                                             <span>{{productFeature.text}}</span>
                                         </li>
                                     </ul>
@@ -93,46 +114,42 @@
                             </div>
                         </li>
                     </ul>
-                    <hr>
-                    <button class="btn btn-primary" ng-click="clearFeature()" ng-disabled="!features.length">Remove Selected Features</button>
-                    <ul class="unstyled">
-                        <li ng-repeat="feature in features">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="col-sm-9">
-                                        <label class="checkbox">
-                                            <input type="checkbox" ng-model="feature.done">
-                                            <span class="done-{{feature.done}}">{{feature.text}}</span>
-                                        </label>
+                </div>
+                <!--features list -->
+                <div class="col-sm-4">
+                    <div class="product-heading-section">
+                        <h4>{{label.feature_list_title}}</h4>
+                        <button class="btn btn-danger btn-xs pull-right" ng-click="clearFeature()" ng-disabled="totalFeatureCount() === features.length ?  true : false" ng-show="features.length">{{label.remove_btn_feature}}</button>
+                    </div>
+                    <div ng-show="!features.length">No Feature Found</div>
+                    <div class="panel panel-primary panel-custom-2" ng-show="features.length > 0">
+                        <div class="panel-heading">
+                            <span>Feature List</span>
+                        </div>
+                        <div class="panel-body feature-list">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat="feature in features">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="checkbox" ng-model="feature.done" />
+                                        <label for="checkbox" class="done-{{feature.done}}">
+                                    {{feature.text}}
+                                </label>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <button class="btn btn-danger btn-xs btn-align-middle pull-right" ng-click="deleteFeature($index)">Delete</button>
-                                        <button class="btn btn-default btn-xs btn-align-middle pull-right" ng-click="editFeature($index)">Edit</button>
+                                    <div class="pull-right action-buttons">
+                                        <a href="#" ng-click="editFeature($index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a href="#" class="trash" ng-click="deleteFeature($index)"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <span>{{totalFeatureCount()}} of {{features.length}} remaining</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--<div ng-controller="TodoListController as todoList">
-        <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span> [ <a href="" ng-click="todoList.archive()">archive</a> ]
-        <ul class="unstyled">
-            <li ng-repeat="todo in todoList.todos">
-                <label class="checkbox">
-            <input type="checkbox" ng-model="todo.done">
-            <span class="done-{{todo.done}}">{{todo.text}}</span>
-          </label>
-            </li>
-        </ul>
-        <form ng-submit="todoList.addTodo()">
-            <input type="text" ng-model="todoList.todoText" size="30" placeholder="add new todo here">
-            <input class="btn-primary" type="submit" value="add">
-        </form>
-    </div>-->
 </body>
 
 </html>

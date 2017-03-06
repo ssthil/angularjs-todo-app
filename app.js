@@ -8,64 +8,89 @@ app.controller('NavbarController', function($scope) {
 //product controller 
 app.controller('ProductController', function($scope) {
 
-    $scope.add_product_title = "Add Product";
-    $scope.add_feature_title = "Add Feature";
-    //feature
-    $scope.features = [
-        { text: 'Feature One', done: false }
-    ];
+    $scope.label = {
+        add_product_title: "Add Product",
+        add_feature_title: "Add Feature",
+        product_name_lbl: "Product Name",
+        feature_list_lbl: "Feature List",
+        feature_name_lbl: "Feature Name",
+        product_info_title: "Product Information",
+        feature_list_title: "Features List",
+        remove_btn_product: "Remove Selected Products",
+        remove_btn_feature: "Remove Selected Features"
+    }
 
-    $scope.products = [{
-        text: 'Product One',
-        done: false,
-        features: [
-            { text: $scope.features.text }
-        ]
-    }];
+
+
+    $('#addFeatureWindow').hide();
+    $scope.addFeatureWindow = function() {
+            $('#addFeatureWindow').show();
+        }
+        //feature
+    $scope.features = [];
+    $scope.products = [];
 
     //$scope.selectedFeatures = [];
-
+    $scope.selectedFeature = '';
     $scope.editIndex = false;
+
     // add product
     $scope.addProduct = function() {
-            if ($scope.editIndex === false) {
+        //$scope.addFeatureBtn();
+        if ($scope.editIndex === false) {
+            if ($scope.selectedFeature !== '' && $scope.productName !== '') {
                 $scope.products.push({
                     text: $scope.productName,
                     done: false,
                     features: [{ text: $scope.selectedFeature.text }]
                 });
-
-            } else {
-                $scope.products[$scope.editIndex].text = $scope.productName;
+                $scope.productName = '';
             }
-            $scope.editIndex = false;
-            // clear text field
-            $scope.productName = '';
+
+        } else {
+            $scope.products[$scope.editIndex].text = $scope.productName;
+            $scope.products[$scope.editIndex].features[$scope.editIndex] = $scope.selectedFeature;
         }
-        //edit
+        $scope.productName = '';
+        $scope.editIndex = false;
+
+    }
+
+    //edit
     $scope.editProduct = function(index) {
             $scope.productName = $scope.products[index].text;
+            $scope.selectedFeature.text = $scope.products[index].features[0].text;
             $scope.editIndex = index;
         }
         //delete
     $scope.deleteProduct = function(index) {
-        $scope.products.splice(index, 1);
-    }
+            $scope.products.splice(index, 1);
+        }
+        //view feature
+
 
     // clear selected items
     $scope.clearProduct = function() {
-        var storedProducts = $scope.products;
-        $scope.products = [];
-        angular.forEach(storedProducts, function(product) {
-            if (!product.done) {
-                $scope.products.push(product);
-            }
+            var storedProducts = $scope.products;
+            $scope.products = [];
+            angular.forEach(storedProducts, function(product) {
+                if (!product.done) {
+                    $scope.products.push(product);
+                }
+            });
+        }
+        //count
+    $scope.totalProductCount = function() {
+        var count = 0;
+        angular.forEach($scope.products, function(feature) {
+            count += feature.done ? 0 : 1;
         });
+        return count;
     }
-
 
     //add feature
     $scope.addFeature = function() {
+        // $scope.addFeatureBtn();
         if ($scope.editIndex === false) {
             $scope.features.push({
                 text: $scope.featureName,
@@ -98,26 +123,16 @@ app.controller('ProductController', function($scope) {
         }
         //delete
     $scope.deleteFeature = function(index) {
-        $scope.features.splice(index, 1);
+            $scope.features.splice(index, 1);
+        }
+        //count
+    $scope.totalFeatureCount = function() {
+        var count = 0;
+        angular.forEach($scope.features, function(feature) {
+            count += feature.done ? 0 : 1;
+        });
+        return count;
     }
 
+
 });
-// angular.module('todoApp', [])
-//     .controller('TodoListController', function() {
-//         var todoList = this;
-//         todoList.todos = [
-//             { text: 'learn AngularJS', done: true },
-//             { text: 'build an AngularJS app', done: false }
-//         ];
-
-
-//         todoList.remaining = function() {
-//             var count = 0;
-//             angular.forEach(todoList.todos, function(todo) {
-//                 count += todo.done ? 0 : 1;
-//             });
-//             return count;
-//         };
-
-
-//     });
