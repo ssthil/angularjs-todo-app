@@ -8,9 +8,9 @@ Built single page application for Products and Features relationship
 ```npm install -g http-server```
 
 ## Steps
-`cd ../angularjs-todo-app`
+go to application folder `cd /angularjs-todo-app`
 
-`http-server`
+Start the server with this command: run `http-server`  
 
 
 # Demo screenshot
