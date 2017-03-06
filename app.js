@@ -20,17 +20,14 @@ app.controller('ProductController', function($scope) {
         remove_btn_feature: "Remove Selected Features"
     }
 
-
-
     $('#addFeatureWindow').hide();
     $scope.addFeatureWindow = function() {
-            $('#addFeatureWindow').show();
-        }
-        //feature
+        $('#addFeatureWindow').show();
+    }
+
+    //feature
     $scope.features = [];
     $scope.products = [];
-
-    //$scope.selectedFeatures = [];
     $scope.selectedFeature = '';
     $scope.editIndex = false;
 
@@ -58,28 +55,28 @@ app.controller('ProductController', function($scope) {
 
     //edit
     $scope.editProduct = function(index) {
-            $scope.productName = $scope.products[index].text;
-            $scope.selectedFeature.text = $scope.products[index].features[0].text;
-            $scope.editIndex = index;
-        }
-        //delete
-    $scope.deleteProduct = function(index) {
-            $scope.products.splice(index, 1);
-        }
-        //view feature
+        $scope.productName = $scope.products[index].text;
+        $scope.selectedFeature.text = $scope.products[index].features[0].text;
+        $scope.editIndex = index;
+    }
 
+    //delete
+    $scope.deleteProduct = function(index) {
+        $scope.products.splice(index, 1);
+    }
 
     // clear selected items
     $scope.clearProduct = function() {
-            var storedProducts = $scope.products;
-            $scope.products = [];
-            angular.forEach(storedProducts, function(product) {
-                if (!product.done) {
-                    $scope.products.push(product);
-                }
-            });
-        }
-        //count
+        var storedProducts = $scope.products;
+        $scope.products = [];
+        angular.forEach(storedProducts, function(product) {
+            if (!product.done) {
+                $scope.products.push(product);
+            }
+        });
+    }
+
+    //count
     $scope.totalProductCount = function() {
         var count = 0;
         angular.forEach($scope.products, function(feature) {
@@ -107,25 +104,28 @@ app.controller('ProductController', function($scope) {
 
     // clear selected items
     $scope.clearFeature = function() {
-            var storedFeatures = $scope.features;
-            $scope.features = [];
+        var storedFeatures = $scope.features;
+        $scope.features = [];
 
-            angular.forEach(storedFeatures, function(feature) {
-                if (!feature.done) {
-                    $scope.features.push(feature);
-                }
-            });
-        }
-        //edit
+        angular.forEach(storedFeatures, function(feature) {
+            if (!feature.done) {
+                $scope.features.push(feature);
+            }
+        });
+    }
+
+    //edit
     $scope.editFeature = function(index) {
-            $scope.featureName = $scope.features[index].text;
-            $scope.editIndex = index;
-        }
-        //delete
+        $scope.featureName = $scope.features[index].text;
+        $scope.editIndex = index;
+    }
+
+    //delete
     $scope.deleteFeature = function(index) {
-            $scope.features.splice(index, 1);
-        }
-        //count
+        $scope.features.splice(index, 1);
+    }
+
+    //count
     $scope.totalFeatureCount = function() {
         var count = 0;
         angular.forEach($scope.features, function(feature) {
