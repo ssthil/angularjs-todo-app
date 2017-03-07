@@ -1,0 +1,27 @@
+{
+    "name": "angularjs-todo-app",
+    "version": "1.0.0",
+    "description": "Angularjs Todo Application Example",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "4.13.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ssthil/angularjs-todo-app.git"
+    },
+    "keywords": [
+        "angularjs",
+        "todo"
+    ],
+    "author": "Senthil Sivaramakrishnan",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ssthil/angularjs-todo-app/issues"
+    },
+    "homepage": "https://github.com/ssthil/angularjs-todo-app#readme"
+}
