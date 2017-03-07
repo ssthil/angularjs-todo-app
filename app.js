@@ -26,8 +26,16 @@ app.controller('ProductController', function($scope) {
     }
 
     //feature
-    $scope.features = [];
-    $scope.products = [];
+    $scope.features = [
+        { text: $scope.featureName || 'Initial Feature Name' }
+    ];
+    $scope.products = [{
+        text: $scope.productName || 'Initial Product Name',
+        done: false,
+        features: [
+            { text: $scope.selectedFeature || $scope.features[0].text }
+        ]
+    }];
     $scope.selectedFeature = '';
     $scope.editIndex = false;
 
