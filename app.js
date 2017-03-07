@@ -134,7 +134,20 @@ app.controller('ProductController', function($scope) {
 
     //delete
     $scope.deleteFeature = function(index) {
+        $scope.delateFeatureInProduct(index);
         $scope.features.splice(index, 1);
+    }
+
+    //feature delete under product
+    $scope.delateFeatureInProduct = function(index) {
+        var storedProductFeatures = $scope.products;
+        angular.forEach(storedProductFeatures, function(i) {
+            angular.forEach(i.features, function(feature) {
+                if (feature.text === $scope.features[index].text) {
+                    i.features.splice(0, 1);
+                }
+            })
+        });
     }
 
     //count

@@ -46,9 +46,6 @@
                                     <input class="btn btn-success" type="submit" ng-disabled="!productName.length" value="Save">
                                     <button type="button" class="btn btn-primary add-feature" ng-click="addFeatureWindow()">Add New Feature</button>
                                 </div>
-                                <!--<div ng-messages="productForm.product_name.$error" style="color:maroon" role="alert">
-                                    <div ng-message="required">You did not enter a field</div>
-                                </div>-->
                                 <p style="color:#e45" ng-show="submitted && productForm.product_name.$error.required">Product name is required.</p>
                                 <p style="color:#e45" ng-show="submitted && productForm.feature_list.$error.required">Feature name is required.</p>
                             </form>
@@ -95,11 +92,9 @@
                                         <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="showDetails = !showDetails">Feature Details</button>
                                         <button class="btn btn-danger btn-xs btn-align-middle pull-right" ng-click="deleteProduct($index)">Delete</button>
                                         <button class="btn btn-default btn-xs btn-align-middle pull-right" ng-click="editProduct($index)">Edit</button>
-
-
                                     </div>-->
                                     <div class="pull-right action-buttons margin-right-sm">
-                                        <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="showDetails = !showDetails">Feature Details</button>
+                                        <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="showDetails = !showDetails" ng-show="product.features.length">Feature Details</button>
                                         <a href="#" class="trash pull-right" ng-click="deleteProduct($index)"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="#" class="pull-right" ng-click="editProduct($index)"><span class="glyphicon glyphicon-pencil"></span></a>
                                     </div>
