@@ -38,6 +38,12 @@ ul.unstyled {
     margin-left: 20px;
 }
 
+.unstyled li .checkbox span,
+select.form-control,
+.product-list li .panel-footer li span {
+    text-transform: capitalize;
+}
+
 .margin-top-small {
     margin-top: 80px;
 }
@@ -75,6 +81,7 @@ ul.unstyled {
 
 .feature-list .list-group-item {
     padding: 5px 15px;
+    text-transform: capitalize;
 }
 
 .feature-list .panel .glyphicon,

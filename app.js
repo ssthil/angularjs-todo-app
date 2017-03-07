@@ -5,6 +5,8 @@ app.controller('NavbarController', function($scope) {
 
     $scope.title = "AngularJS Todo App";
 });
+//filter
+
 //product controller 
 app.controller('ProductController', function($scope) {
 
@@ -38,9 +40,10 @@ app.controller('ProductController', function($scope) {
     }];
     $scope.selectedFeature = '';
     $scope.editIndex = false;
+    var isDuplicate = false;
 
     // add product
-    $scope.addProduct = function() {
+    $scope.addProduct = function(index) {
         //$scope.addFeatureBtn();
         if ($scope.editIndex === false) {
             if ($scope.selectedFeature !== '' && $scope.productName !== '') {
@@ -54,7 +57,7 @@ app.controller('ProductController', function($scope) {
 
         } else {
             $scope.products[$scope.editIndex].text = $scope.productName;
-            $scope.products[$scope.editIndex].features[$scope.editIndex] = $scope.selectedFeature;
+            $scope.products[$scope.editIndex].features[0] = $scope.selectedFeature;
         }
         $scope.productName = '';
         $scope.editIndex = false;
@@ -64,7 +67,7 @@ app.controller('ProductController', function($scope) {
     //edit
     $scope.editProduct = function(index) {
         $scope.productName = $scope.products[index].text;
-        $scope.selectedFeature.text = $scope.products[index].features[0].text;
+        $scope.selectedFeature = $scope.products[index].features[0].text;
         $scope.editIndex = index;
     }
 
@@ -104,6 +107,7 @@ app.controller('ProductController', function($scope) {
 
         } else {
             $scope.features[$scope.editIndex].text = $scope.featureName;
+            $scope.products[$scope.editIndex].features[0].text = $scope.featureName;
         }
         $scope.editIndex = false;
         // clear field
