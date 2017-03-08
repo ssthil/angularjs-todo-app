@@ -67,7 +67,8 @@ app.controller('ProductController', function($scope) {
     //edit
     $scope.editProduct = function(index) {
         $scope.productName = $scope.products[index].text;
-        $scope.selectedFeature = $scope.products[index].features[0].text;
+        $scope.selectedFeature = ($scope.products[index].features.length !== 0) ? $scope.products[index].features[0].text : "";
+
         $scope.editIndex = index;
     }
 
@@ -99,7 +100,7 @@ app.controller('ProductController', function($scope) {
     //add feature
     $scope.addFeature = function() {
         // $scope.addFeatureBtn();
-        if ($scope.editIndex === false) {
+        if ($scope.editIndex === false || $scope.features.length === 0) {
             $scope.features.push({
                 text: $scope.featureName,
                 done: false

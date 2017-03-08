@@ -107,7 +107,7 @@ select.form-control,
     width: 74%;
 }
 
-@media (min-device-width: 375px) {
+@media (min-device-width: 375px) and (max-device-width: 700px) {
     .product-heading-section .pull-right {
         float: none !important;
     }

@@ -22,7 +22,7 @@
     <div class="container-fluid margin-top-small">
         <div ng-controller="ProductController">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-md-3">
                     <!-- add product section-->
                     <div class="panel panel-warning">
                         <div class="panel-heading">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <!-- right side list -->
-                <div class="col-sm-5">
+                <div class="col-md-5">
                     <div class="product-heading-section">
                         <h4>{{label.product_info_title}}</h4>
                         <button class="btn btn-danger btn-xs pull-right" ng-click="clearProduct()" ng-disabled="totalProductCount() === products.length ?  true : false" ng-show="products.length">{{label.remove_btn_product}}</button>
@@ -83,13 +83,13 @@
                         <li ng-repeat="product in products">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="col-sm-7">
+                                    <div class="col-md-7">
                                         <label class="checkbox">
                                         <input type="checkbox" ng-model="product.done">
                                         <span class="done-{{product.done}}">{{product.text}}</span>
                                     </label>
                                     </div>
-                                    <!--<div class="col-sm-4">
+                                    <!--<div class="col-md-4">
                                         <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="showDetails = !showDetails">Feature Details</button>
                                         <button class="btn btn-danger btn-xs btn-align-middle pull-right" ng-click="deleteProduct($index)">Delete</button>
                                         <button class="btn btn-default btn-xs btn-align-middle pull-right" ng-click="editProduct($index)">Edit</button>
@@ -113,7 +113,7 @@
                     </ul>
                 </div>
                 <!--features list -->
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="feature-heading-section">
                         <h4>{{label.feature_list_title}}</h4>
                         <button class="btn btn-danger btn-xs pull-right" ng-click="clearFeature()" ng-disabled="totalFeatureCount() === features.length ?  true : false" ng-show="features.length">{{label.remove_btn_feature}}</button>
