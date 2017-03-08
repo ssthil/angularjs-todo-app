@@ -12,7 +12,7 @@ Created in the root directory ```package.json``` for express dependecy and creat
 
 ## Steps
 go to application folder `cd /angularjs-todo-app`
-do install dependencies, run ```npm install``` or ```npm i```
+do install ***dependencies*** run ```npm install``` or ```npm i```
 
 Start the server with this command: run ```npm start```  
 
