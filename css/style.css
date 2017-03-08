@@ -14,16 +14,20 @@ ul.unstyled {
 }
 
 .product-heading-section h4,
-.product-heading-section button {
+.feature-heading-section h4,
+.product-heading-section button,
+.feature-heading-section button {
     display: inline-block;
 }
 
-.product-heading-section h4 {
+.product-heading-section h4,
+.feature-heading-section h4 {
     color: #063886;
     text-transform: uppercase;
 }
 
-.product-heading-section button {
+.product-heading-section button,
+.feature-heading-section button {
     margin-top: 10px;
 }
 
@@ -101,6 +105,15 @@ select.form-control,
 
 .feature-list .checkbox {
     width: 74%;
+}
+
+@media (min-device-width: 375px) {
+    .product-heading-section .pull-right {
+        float: none !important;
+    }
+    .feature-list .checkbox {
+        width: 70%;
+    }
 }
 
 .feature-list .panel-body input[type=checkbox]:checked+label {
