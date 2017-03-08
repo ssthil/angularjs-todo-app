@@ -128,6 +128,7 @@ app.controller('ProductController', function($scope) {
 
     //edit
     $scope.editFeature = function(index) {
+        $scope.addFeatureWindow();
         $scope.featureName = $scope.features[index].text;
         $scope.editIndex = index;
     }
