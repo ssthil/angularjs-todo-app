@@ -17,7 +17,7 @@ do install dependencies, run ```npm install``` or ```npm i```
 Start the server with this command: run ```npm start```  
 
 # Demo screenshot
-['https://github.com/ssthil/angularjs-todo-app/blob/master/demo-screenshot/demo-screencapture.png']
+https://github.com/ssthil/angularjs-todo-app/blob/master/demo-screenshot/demo-screencapture.png
 
 # Demo URL
 https://ssthil-angularjs-app.herokuapp.com/
