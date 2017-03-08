@@ -19,5 +19,8 @@ Start the server with this command: run ```npm start```
 # Demo screenshot
 https://github.com/ssthil/angularjs-todo-app/blob/master/demo-screenshot/demo-screencapture.png
 
+### Heroku Deployment
+Created `procfile` for heroku deployment
+
 # Demo URL
 https://ssthil-angularjs-app.herokuapp.com/
