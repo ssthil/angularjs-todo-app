@@ -5,7 +5,9 @@ Built single page application for Products and Features relationship
 ```git clone https://github.com/ssthil/angularjs-todo-app.git```
 
 ## Install local webser
-```npm install -g http-server```
+Initially installed ```npm install -g http-server``` 
+
+Latest update: created ```package.json``` for express dependecy and created ```server.js``` for local server
 
 ## Steps
 go to application folder `cd /angularjs-todo-app`
