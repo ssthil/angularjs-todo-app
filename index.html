@@ -77,7 +77,7 @@
                         <h4>{{label.product_info_title}}</h4>
                         <button class="btn btn-danger btn-xs pull-right" ng-click="clearProduct()" ng-disabled="totalProductCount() === products.length ?  true : false" ng-show="products.length">{{label.remove_btn_product}}</button>
                     </div>
-                    <div ng-show="!products.length">No Product Found</div>
+                    <div ng-show="!products.length" class="text-danger">No Product Found</div>
                     <ul class="unstyled product-list">
                         <li ng-repeat="product in products">
                             <div class="panel panel-default">
@@ -117,7 +117,7 @@
                         <h4>{{label.feature_list_title}}</h4>
                         <button class="btn btn-danger btn-xs pull-right" ng-click="clearFeature()" ng-disabled="totalFeatureCount() === features.length ?  true : false" ng-show="features.length">{{label.remove_btn_feature}}</button>
                     </div>
-                    <div ng-show="!features.length">No Feature Found</div>
+                    <div ng-show="!features.length" class="text-danger">No Feature Found</div>
                     <div class="panel panel-primary panel-custom-2" ng-show="features.length > 0">
                         <div class="panel-heading">
                             <span>Feature List</span>
