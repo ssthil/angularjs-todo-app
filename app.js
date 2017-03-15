@@ -1,14 +1,26 @@
 var app = angular.module('todoApp', []);
+//service
+app.service('dataService', ['$http', function($http) {
 
+    this.getProducts = function() {
+        return $http.get("data/mock-data.json");
+    }
+
+}]);
 //navbar controller
-app.controller('NavbarController', function($scope) {
+app.controller('NavbarController', ['$scope', 'dataService', '$rootScope', function($scope, dataService, $rootScope) {
 
     $scope.title = "AngularJS Todo App";
-});
+    $scope.loadProducts = function() {
+        $rootScope.$emit("testingScope", {});
+        $(".load-data-btn").hide();
+    }
+
+}]);
 //filter
 
 //product controller 
-app.controller('ProductController', function($scope) {
+app.controller('ProductController', ['$scope', 'dataService', '$rootScope', function($scope, dataService, $rootScope) {
 
     $scope.label = {
         add_product_title: "Add Product",
@@ -41,6 +53,34 @@ app.controller('ProductController', function($scope) {
     $scope.selectedFeature = '';
     $scope.editIndex = false;
     var isDuplicate = false;
+    //rootScope
+    $rootScope.$on("testingScope", function() {
+        $scope.getProductsList();
+    });
+    //http
+    $scope.getProductsList = function() {
+        dataService.getProducts()
+            .then(function(response) {
+                //console.log(response);
+                $scope.result = response.data;
+                angular.forEach($scope.result, function(product, key) {
+                    angular.forEach(product.features, function(feature, key) {
+                        $scope.products.push({
+                            text: product.text,
+                            done: product.done,
+                            features: [{ text: feature.text }]
+                        });
+                        //features
+                        $scope.features.push({
+                            text: feature.text,
+                            done: product.done,
+                        })
+                    })
+                })
+            }, function(error) {
+                //console.log(error.message);
+            })
+    }
 
     // add product
     $scope.addProduct = function(index) {
@@ -86,6 +126,12 @@ app.controller('ProductController', function($scope) {
                 $scope.products.push(product);
             }
         });
+        $scope.toggleSelectionProducts = "Select All";
+        $scope.isAllSelectedProducts = false;
+        if ($scope.products.length === 0 && $scope.features.length === 0) {
+            $(".load-data-btn").show();
+        }
+
     }
 
     //count
@@ -95,6 +141,25 @@ app.controller('ProductController', function($scope) {
             count += feature.done ? 0 : 1;
         });
         return count;
+    }
+
+    //select all checkbox
+    $scope.toggleSelectionProducts = "Select All";
+    $scope.toggleSelectionFeature = "Select All";
+    $scope.toggleSelectProduct = function() {
+        angular.forEach($scope.products, function(product) {
+            product.done = $scope.isAllSelectedProducts;
+        });
+
+        ($scope.toggleSelectionProducts === "Deselect All") ? $scope.toggleSelectionProducts = "Select All": $scope.toggleSelectionProducts = "Deselect All";
+    }
+
+    $scope.toggleSelectFeature = function() {
+        angular.forEach($scope.features, function(feature) {
+            feature.done = $scope.isAllSelectedFeature;
+        });
+
+        ($scope.toggleSelectionFeature === "Deselect All") ? $scope.toggleSelectionFeature = "Select All": $scope.toggleSelectionFeature = "Deselect All";
     }
 
     //add feature
@@ -125,6 +190,14 @@ app.controller('ProductController', function($scope) {
                 $scope.features.push(feature);
             }
         });
+
+        $scope.toggleSelectionFeature = "Select All";
+        $scope.isAllSelectedFeature = false;
+
+        if ($scope.products.length === 0 && $scope.features.length === 0) {
+            $(".load-data-btn").show();
+        }
+
     }
 
     //edit
@@ -161,5 +234,4 @@ app.controller('ProductController', function($scope) {
         return count;
     }
 
-
-});
+}]);

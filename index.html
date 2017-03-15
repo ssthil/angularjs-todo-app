@@ -5,6 +5,7 @@
     <title>Angularjs Todo App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
@@ -17,6 +18,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">{{title}}</a>
             </div>
+            <button type="button" class="btn btn-default pull-right load-data-btn btn-xs" ng-click="loadProducts()">Load Sample Data</button>
         </div>
     </nav>
     <div class="container-fluid margin-top-small">
@@ -47,8 +49,8 @@
                                     <input class="btn btn-success" type="submit" ng-disabled="!productName.length" value="Save">
                                     <button type="button" class="btn btn-primary add-feature" ng-click="addFeatureWindow()">Add New Feature</button>
                                 </div>
-                                <p style="color:#e45" ng-show="submitted && productForm.product_name.$error.required">Product name is required.</p>
-                                <p style="color:#e45" ng-show="submitted && productForm.feature_list.$error.required">Feature name is required.</p>
+                                <p class="error-msg" ng-show="submitted && productForm.product_name.$error.required">Product name is required.</p>
+                                <p class="error-msg" ng-show="submitted && productForm.feature_list.$error.required">Feature name is required.</p>
                             </form>
                         </div>
                     </div>
@@ -77,6 +79,10 @@
                     <div class="product-heading-section">
                         <h4>{{label.product_info_title}}</h4>
                         <button class="btn btn-danger btn-xs pull-right" ng-click="clearProduct()" ng-disabled="totalProductCount() === products.length ?  true : false" ng-show="products.length">{{label.remove_btn_product}}</button>
+                        <div class="checkbox checkbox-primary" ng-show="products.length">
+                            <input type="checkbox" id="toggle_select" ng-model="isAllSelectedProducts" ng-click="toggleSelectProduct()">
+                            <label for="toggle_select">{{toggleSelectionProducts}}</label>
+                        </div>
                     </div>
                     <div ng-show="!products.length" class="text-danger">No Product Found</div>
                     <ul class="unstyled product-list">
@@ -89,13 +95,8 @@
                                         <span class="done-{{product.done}}">{{product.text}}</span>
                                     </label>
                                     </div>
-                                    <!--<div class="col-md-4">
-                                        <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="showDetails = !showDetails">Feature Details</button>
-                                        <button class="btn btn-danger btn-xs btn-align-middle pull-right" ng-click="deleteProduct($index)">Delete</button>
-                                        <button class="btn btn-default btn-xs btn-align-middle pull-right" ng-click="editProduct($index)">Edit</button>
-                                    </div>-->
-                                    <div class="pull-right action-buttons margin-right-sm">
-                                        <button class="btn btn-info btn-xs btn-align-middle pull-right" ng-click="showDetails = !showDetails" ng-show="product.features.length">Feature Details</button>
+                                    <div class="pull-right action-buttons margin-top-sm">
+                                        <button class="btn btn-info btn-xs btn-align-middle pull-right feature-btn" ng-click="showDetails = !showDetails" ng-show="product.features.length">Feature Details</button>
                                         <a href="#" class="trash pull-right" ng-click="deleteProduct($index)"><span class="glyphicon glyphicon-trash"></span></a>
                                         <a href="#" class="pull-right" ng-click="editProduct($index)"><span class="glyphicon glyphicon-pencil"></span></a>
                                     </div>
@@ -117,6 +118,10 @@
                     <div class="feature-heading-section">
                         <h4>{{label.feature_list_title}}</h4>
                         <button class="btn btn-danger btn-xs pull-right" ng-click="clearFeature()" ng-disabled="totalFeatureCount() === features.length ?  true : false" ng-show="features.length">{{label.remove_btn_feature}}</button>
+                        <div class="checkbox checkbox-primary" ng-show="features.length">
+                            <input type="checkbox" id="toggle_select" ng-model="isAllSelectedFeature" ng-click="toggleSelectFeature()">
+                            <label for="toggle_select">{{toggleSelectionFeature}}</label>
+                        </div>
                     </div>
                     <div ng-show="!features.length" class="text-danger">No Feature Found</div>
                     <div class="panel panel-primary panel-custom-2" ng-show="features.length > 0">
