@@ -1,4 +1,4 @@
-.done-true {
+/*.done-true {
     text-decoration: line-through;
     color: #e56;
 }
@@ -17,10 +17,12 @@ ul.unstyled {
     padding: 0;
 }
 
+
 .form-control {
     height: 40px;
     padding: 8px 15px;
 }
+
 
 .product-heading-section h4,
 .feature-heading-section h4,
@@ -42,7 +44,7 @@ ul.unstyled {
 
 .unstyled li {
     list-style: none;
-}
+}*/
 
 .unstyled li .checkbox {
     position: relative;
@@ -57,9 +59,12 @@ select.form-control,
     text-transform: capitalize;
 }
 
+
+/*
 .margin-top-small {
     margin-top: 80px;
 }
+
 
 .panel-custom {
     border-color: #707782;
@@ -76,16 +81,18 @@ select.form-control,
     margin-left: 5px;
 }
 
+
 .trash,
 .error-msg {
     color: #e45;
-}
+}*/
 
 .flag {
     color: rgb(248, 148, 6);
 }
 
-.feature-list .panel-body {
+
+/*.feature-list .panel-body {
     padding: 0px;
 }
 
@@ -115,7 +122,7 @@ select.form-control,
 
 .feature-list .checkbox {
     width: 74%;
-}
+}*/
 
 @media (min-device-width: 375px) and (max-device-width: 700px) {
     .product-heading-section .pull-right {
@@ -193,6 +200,8 @@ ul.product-list .panel-body .col-md-7 {
     padding-left: 5px !important;
 }
 
+
+/*
 .fadein,
 .fadeout {
     opacity: 0;
@@ -201,6 +210,7 @@ ul.product-list .panel-body .col-md-7 {
     -webkit-transition: opacity 0.4s ease-in-out;
     transition: opacity 0.4s ease-in-out;
 }
+
 
 .fadein {
     opacity: 1;
@@ -216,7 +226,7 @@ ul.product-list .panel-body .col-md-7 {
 
 .margin-top-sm a {
     margin: 0 5px;
-}
+}*/
 
 .margin-top-sm .btn-xs {
     padding: 2px 5px;
@@ -235,19 +245,23 @@ ul.product-list .panel-body .col-md-7 {
     border-color: #686c6f;
 }
 
-.margin-bottom-none {
+
+/*.margin-bottom-none {
     margin-bottom: 0;
-}
+}*/
 
 
 /*checkbox*/
 
+
+/*
 .product-heading-section .checkbox,
 .feature-heading-section .checkbox {
     padding-left: 15px;
     font-size: 13px;
     line-height: 17px;
 }
+
 
 .product-heading-section .checkbox label,
 .feature-heading-section .checkbox label {
@@ -307,4 +321,4 @@ ul.product-list .panel-body .col-md-7 {
     font-family: "FontAwesome";
     content: "\f00c";
     color: #fff;
-}
+}*/

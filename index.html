@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
     <script src="app.js"></script>
@@ -80,8 +81,8 @@
                         <h4>{{label.product_info_title}}</h4>
                         <button class="btn btn-danger btn-xs pull-right" ng-click="clearProduct()" ng-disabled="totalProductCount() === products.length ?  true : false" ng-show="products.length">{{label.remove_btn_product}}</button>
                         <div class="checkbox checkbox-primary" ng-show="products.length">
-                            <input type="checkbox" id="toggle_select" ng-model="isAllSelectedProducts" ng-click="toggleSelectProduct()">
-                            <label for="toggle_select">{{toggleSelectionProducts}}</label>
+                            <input type="checkbox" id="toggle_select_product" ng-model="isAllSelectedProducts" ng-click="toggleSelectProduct()">
+                            <label for="toggle_select_product">{{toggleSelectionProducts}}</label>
                         </div>
                     </div>
                     <div ng-show="!products.length" class="text-danger">No Product Found</div>
@@ -119,8 +120,8 @@
                         <h4>{{label.feature_list_title}}</h4>
                         <button class="btn btn-danger btn-xs pull-right" ng-click="clearFeature()" ng-disabled="totalFeatureCount() === features.length ?  true : false" ng-show="features.length">{{label.remove_btn_feature}}</button>
                         <div class="checkbox checkbox-primary" ng-show="features.length">
-                            <input type="checkbox" id="toggle_select" ng-model="isAllSelectedFeature" ng-click="toggleSelectFeature()">
-                            <label for="toggle_select">{{toggleSelectionFeature}}</label>
+                            <input type="checkbox" id="toggle_select_feature" ng-model="isAllSelectedFeature" ng-click="toggleSelectFeature()">
+                            <label for="toggle_select_feature">{{toggleSelectionFeature}}</label>
                         </div>
                     </div>
                     <div ng-show="!features.length" class="text-danger">No Feature Found</div>
