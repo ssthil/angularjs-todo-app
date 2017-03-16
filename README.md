@@ -14,6 +14,12 @@ Created in the root directory ```package.json``` for express dependecy and creat
 go to application folder `cd /angularjs-todo-app`
 do install ***dependencies*** run ```npm install``` or ```npm i```
 
+## Less install and compile
+run ```npm install -g less```
+run ```npm install --save-dev``` which save the package under `devDependencies`
+
+run ```lessc css/main.less css/main.css``` to save the CSS result to a file of your choice
+
 Start the server with this command: run ```npm start```  
 
 # Demo screenshot
